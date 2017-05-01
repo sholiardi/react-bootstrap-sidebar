@@ -1,0 +1,14 @@
+.menu {
+  padding: 0.5em 0 0.5em 0;
+  text-align: left;
+}
+
+.menu:hover {
+  background-color: #DCE1E5;
+}
+
+.check {
+  margin: 0 0.5em 0 0.5em;
+  width: 30px;
+  height: 30px;
+}

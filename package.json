@@ -8,6 +8,7 @@
     "react": "^15.5.4",
     "react-bootstrap": "^0.30.9",
     "react-dom": "^15.5.4",
+    "react-height": "^3.0.0",
     "react-sticky": "^5.0.8"
   },
   "devDependencies": {

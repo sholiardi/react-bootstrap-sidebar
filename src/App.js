@@ -2,12 +2,22 @@ import React, { Component } from 'react';
 import {Grid, Col, Row} from 'react-bootstrap';
 import {flatten, times, range} from 'lodash';
 import {StickyContainer, Sticky} from 'react-sticky';
+import {ReactHeight} from 'react-height';
 import logo from './logo.svg';
+import check from './check.png';
 import './App.css';
+import './style.css';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {height: -1};
+  }
+
   render() {
+
+    const {height} = this.state;
     const NUMBER_OF_PARAGRAPHS = 15;
     const paragraphs = flatten(times(NUMBER_OF_PARAGRAPHS, (index) =>
       (
@@ -25,15 +35,23 @@ class App extends Component {
       )
     ));
 
-    const NUMBER_OF_KITTIES = 5;
+    const NUMBER_OF_KITTIES = 1;
     const kitties = range(0, NUMBER_OF_KITTIES).map((i) => {
       return (
         <div className="sidebar-kitties" key={i}>
           <StickyContainer style={{zIndex: 2}}>
             <Sticky>
-              <img src="https://placekitten.com/g/300/250" />
+              <div className="menu">
+                <img src={check} className="check" alt="check" />Home
+              </div>
+              <div className="menu">
+                <img src={check} className="check" alt="check" />About
+              </div>
+              <div className="menu">
+                <img src={check} className="check" alt="check" />Login
+              </div>
             </Sticky>
-            <div style={{height: "300px"}}></div>
+            <div style={{height: height}}></div>
           </StickyContainer>
         </div>
       );
@@ -49,7 +67,9 @@ class App extends Component {
             <Grid>
                 <Row className="show-grid">
                   <Col lg={8}>
-                    {paragraphs.map(paragraph => paragraph)}
+                    <ReactHeight onHeightReady={value => this.setState({height: value})}>
+                      {paragraphs.map(paragraph => paragraph)}
+                    </ReactHeight>
                   </Col>
                   <Col lg={4}>{kitties}</Col>
                 </Row>
@@ -57,7 +77,9 @@ class App extends Component {
         </div>
       </div>
     );
+
   }
+
 }
 
 export default App;
